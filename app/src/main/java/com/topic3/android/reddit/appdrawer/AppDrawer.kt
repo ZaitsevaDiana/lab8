@@ -10,7 +10,9 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
@@ -110,13 +112,13 @@ fun ProfileInfo(modifier: Modifier = Modifier) {
       }
     )
     Divider(
-      modifier =modifier
-            .width(1.dp)
-            .constrainAs(divider) {
-              centerVerticallyTo(karmaItem)
-              centerHorizontallyTo (parent)
-              height =  Dimension.fillToConstraints
-            },
+      modifier = modifier
+        .width(1.dp)
+        .constrainAs(divider) {
+          centerVerticallyTo(karmaItem)
+          centerHorizontallyTo(parent)
+          height = Dimension.fillToConstraints
+        },
       color=  colors.onSurface.copy(alpha = .2f)
     )
     ProfileInfoItem(Icons.Filled.ShoppingCart,
@@ -161,7 +163,7 @@ private fun ProfileInfoItem(
       fontSize = 10.sp,
       modifier= itemModifier
         .padding(start = 8.dp)
-        .constrainAs(amountRef){
+        .constrainAs(amountRef) {
           top.linkTo(iconRef.top)
           start.linkTo(iconRef.end)
           bottom.linkTo(titleRef.top)
@@ -173,7 +175,7 @@ private fun ProfileInfoItem(
       fontSize = 10.sp,
       modifier= itemModifier
         .padding(start = 8.dp)
-        .constrainAs(titleRef){
+        .constrainAs(titleRef) {
           top.linkTo(amountRef.bottom)
           start.linkTo(iconRef.end)
           bottom.linkTo(iconRef.bottom)
@@ -190,6 +192,22 @@ private fun ProfileInfoItem(
 @Composable
 private fun AppDrawerBody(closeDrawerAction: () -> Unit) {
   //TODO add your code here
+  Column {
+    ScreenNavigationButton(
+      icon = Icons.Filled.AccountBox,
+      label = stringResource(R.string.my_profile),
+      onClickAction = {
+        closeDrawerAction()
+      }
+    )
+    ScreenNavigationButton(
+      icon = Icons.Filled.Home,
+      label = stringResource(R.string.saved),
+      onClickAction = {
+        closeDrawerAction()
+      }
+    )
+  }
 }
 
 /**
